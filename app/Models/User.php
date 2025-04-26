@@ -11,6 +11,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    // Define role constants
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_CASHIER = 'cashier';
+    public const ROLE_LEADERS = 'leader';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -40,4 +46,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isCashier()
+    {
+        return $this->role === self::ROLE_CASHIER;
+    }
+
+    public function isLeader()
+    {
+        return $this->role === self::ROLE_LEADERS;
+    }
+
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
 }

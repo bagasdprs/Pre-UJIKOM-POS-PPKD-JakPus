@@ -38,7 +38,7 @@ const LeftSidebar = props => {
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="/admin.products"
                         className="flex items-center">
                         <span className="flex items-center justify-center text-cyan-100 hover:bg-cyan-400 h-12 w-12 rounded-2xl">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

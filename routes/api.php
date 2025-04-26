@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/products', [ProductsController::class, 'apiIndex']);
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {

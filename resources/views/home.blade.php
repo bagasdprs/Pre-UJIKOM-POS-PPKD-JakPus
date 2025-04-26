@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="shorcut icon" href="{{ asset('img/favicon.png') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <title>Actiry POS</title>
+        <title>POS | PPKD JakPus</title>
     </head>
     <body>
         <div id="root"></div>
