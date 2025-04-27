@@ -3,14 +3,8 @@
 @section('title', 'Daftar Produk')
 
 @section('content')
-<div class="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow mt-8">
-    <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold">Daftar Produk</h2>
-
-        <a href="{{ route('home') }}" class="bg-gray-400 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded">
-            ← Kembali
-        </a>
-    </div>
+<div class="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow mt-8">
+    <h2 class="text-2xl font-bold mb-6">Daftar Produk</h2>
 
     <a href="{{ route('products.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded mb-6 inline-block">
         + Tambah Produk
@@ -30,6 +24,7 @@
             <div class="text-lg font-semibold">{{ $product->name }}</div>
             <div>Harga: Rp {{ number_format($product->price, 0, ',', '.') }}</div>
             <div>Stok: {{ $product->stock }}</div>
+            <div class="text-sm text-gray-500">Kategori: {{ $product->category?->category_name ?? 'Tidak ada kategori' }}</div>
 
             <div class="flex gap-2 mt-4">
                 <a href="{{ route('products.show', $product->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">
@@ -38,7 +33,6 @@
                 <a href="{{ route('products.edit', $product->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white px-4 py-2 rounded">
                     Edit
                 </a>
-
                 <form id="delete-form-{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -56,7 +50,7 @@
     function deleteConfirmation(id) {
         Swal.fire({
             title: 'Yakin ingin menghapus?',
-            text: "Data produk akan dihapus permanen!",
+            text: "Produk akan dihapus permanen!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',

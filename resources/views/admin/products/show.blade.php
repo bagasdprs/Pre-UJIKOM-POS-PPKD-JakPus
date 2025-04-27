@@ -17,6 +17,7 @@
     <div class="text-lg font-semibold mb-2">Nama: {{ $product->name }}</div>
     <div class="mb-2">Harga: Rp {{ number_format($product->price, 0, ',', '.') }}</div>
     <div class="mb-2">Stok: {{ $product->stock }}</div>
+    <div class="mb-2">Kategori: {{ $product->category?->category_name ?? '-' }}</div>
 
     <a href="{{ route('products.index') }}" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">
         Kembali ke Daftar Produk

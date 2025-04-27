@@ -26,6 +26,7 @@ const LeftSidebar = () => {
                     <img src="img/logo.png" alt="Logo" />
                 </a>
                 <ul className="flex flex-col space-y-2 mt-12">
+
                     {/* Dashboard */}
                     <li>
                         <a href="/" className="flex items-center">

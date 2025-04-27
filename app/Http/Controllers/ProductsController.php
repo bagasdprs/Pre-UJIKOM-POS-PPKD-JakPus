@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Categories;
 
 class ProductsController extends Controller
 {
@@ -23,6 +24,7 @@ class ProductsController extends Controller
 
     public function create()
     {
+        $categories = Categories::all();
         return view('admin.products.create');
     }
 
@@ -33,6 +35,7 @@ class ProductsController extends Controller
             'price' => 'required|integer',
             'stock' => 'required|integer',
             'img' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         $imgPath = null;
@@ -45,6 +48,7 @@ class ProductsController extends Controller
             'price' => $request->price,
             'stock' => $request->stock,
             'img' => $imgPath,
+            'category_id' => $request->category_id,
         ]);
 
         return redirect()->route('products.index')->with('success', 'Product has been Added');
@@ -61,7 +65,8 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Products::findOrFail($id);
-        return view('admin.products.edit', compact('product'));
+        $categories = Categories::all();
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
 
@@ -74,16 +79,16 @@ class ProductsController extends Controller
             'price' => 'required|integer',
             'stock' => 'required|integer',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
-        $data = $request->only(['name', 'price', 'stock']);
+        $data = $request->only(['name', 'price', 'stock', 'category_id']);
 
         if ($request->hasFile('img')) {
             // Hapus gambar lama
             if ($product->image) {
                 Storage::disk('public')->delete($product->image);
             }
-
             $data['img'] = $request->file('img')->store('products', 'public');
         }
 
