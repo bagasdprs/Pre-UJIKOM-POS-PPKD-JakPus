@@ -4,7 +4,13 @@
 
 @section('content')
 <div class="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow mt-8">
-    <h2 class="text-2xl font-bold mb-6">Daftar Produk</h2>
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Daftar Produk</h2>
+
+        <a href="{{ route('home') }}" class="bg-gray-400 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded">
+            ← Kembali
+        </a>
+    </div>
 
     <a href="{{ route('products.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded mb-6 inline-block">
         + Tambah Produk

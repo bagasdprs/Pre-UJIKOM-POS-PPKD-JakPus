@@ -14,18 +14,6 @@
     <div class="min-h-screen flex flex-col">
         <main class="flex-1 p-6">
             @yield('content')
-            @if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Berhasil!',
-        text: '{{ session('success') }}',
-        timer: 2500,
-        showConfirmButton: false
-    });
-</script>
-@endif
-
         </main>
     </div>
 
@@ -33,15 +21,16 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @if(session('success'))
-<script>
-    Swal.fire({
-        icon: 'success',
-        title: 'Berhasil!',
-        text: '{{ session('success') }}',
-        timer: 2500,
-        showConfirmButton: false
-    });
-</script>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            timer: 2500,
+            showConfirmButton: false
+        });
+    </script>
+    @endif
 
 </body>
 </html>
